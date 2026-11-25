@@ -1,4 +1,4 @@
-const V = 'bcp-office-20261124223408';
+const V = 'bcp-office-20261125000113';
 const FILES = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 // each file is fetched with ?v=<this build> so GitHub's cache cannot hand back the previous build's page; it is stored under its plain name
 self.addEventListener('install', e => { e.waitUntil(caches.open(V).then(c => Promise.all(FILES.map(f => fetch(f + (f.includes('?') ? '&' : '?') + 'v=' + V, { cache: 'reload' }).then(r => { if (!r.ok) throw new Error(f + ' ' + r.status); return c.put(f, r); })))).then(() => self.skipWaiting())); });
